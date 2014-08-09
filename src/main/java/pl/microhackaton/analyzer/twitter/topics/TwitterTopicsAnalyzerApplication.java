@@ -6,7 +6,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import pl.microhackaton.analyzer.twitter.topics.filter.CorrelationIdFilter;
 import pl.microhackaton.analyzer.twitter.topics.healthcheck.PingCheck;
-import pl.microhackaton.analyzer.twitter.topics.resources.PairIdController;
+import pl.microhackaton.analyzer.twitter.topics.resources.ApiController;
 
 import javax.servlet.DispatcherType;
 import java.util.EnumSet;
@@ -29,7 +29,7 @@ public class TwitterTopicsAnalyzerApplication  extends Application<TwitterTopics
     public void run(TwitterTopicsAnalyzerConfiguration configuration, Environment environment) throws Exception {
         //final MicroDepsService microDepsService = configuration.getMicroDepServiceConfiguration().build(environment);
 
-        environment.jersey().register(new PairIdController());
+        environment.jersey().register(new ApiController());
         // add correlation id filter
         environment.servlets().addFilter("CorrelationIdFilter", new CorrelationIdFilter())
                 .addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");

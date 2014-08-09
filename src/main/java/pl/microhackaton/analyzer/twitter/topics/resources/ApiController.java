@@ -2,7 +2,6 @@ package pl.microhackaton.analyzer.twitter.topics.resources;
 
 import java.util.Set;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -24,7 +23,7 @@ import com.codahale.metrics.annotation.Timed;
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class PairIdController {
+public class ApiController {
 
 	@GET
 	@Timed
