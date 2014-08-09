@@ -1,5 +1,7 @@
 package pl.microhackaton.analyzer.twitter.topics.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  {
     "pairId": 1,
@@ -17,6 +19,7 @@ package pl.microhackaton.analyzer.twitter.topics.model;
 }
  *
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class TopicsResponse {
 	
 	private long pairId;

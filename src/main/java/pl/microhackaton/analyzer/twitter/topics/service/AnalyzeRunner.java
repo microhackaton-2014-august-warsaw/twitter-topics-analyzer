@@ -46,12 +46,12 @@ public class AnalyzeRunner implements Runnable {
 
 	private TopicsResponse callCommonTopicsCorellator(TopicsRequest request) {
 		Client client = Client.create();
-		WebResource webResource = client.resource("http://localhost:8080/aaa/"
-				+ request.getPairId());
+		WebResource webResource = client
+				.resource("http://0.0.0.0:8777/twitter-topics-analyzer/api/hello/"
+						+ request.getAnalyzedId()); // TODO
 
 		ClientResponse response = webResource
-				.accept(MediaType.APPLICATION_JSON).post(ClientResponse.class,
-						request);
+				.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
 		if (response.getStatus() != 200) {
 			throw new RuntimeException("Failed : HTTP error code : "

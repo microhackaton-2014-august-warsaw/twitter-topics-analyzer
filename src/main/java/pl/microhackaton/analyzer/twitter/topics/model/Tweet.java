@@ -1,6 +1,7 @@
 package pl.microhackaton.analyzer.twitter.topics.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
 
 /**
@@ -9,7 +10,9 @@ import com.google.common.base.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Tweet {
 
+	@JsonProperty
     private String text;
+	@JsonProperty
     private Entity entities;
 
 
