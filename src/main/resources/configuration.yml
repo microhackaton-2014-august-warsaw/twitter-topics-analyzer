@@ -1,0 +1,13 @@
+logging:
+  level: DEBUG
+  appenders:
+    - type: file
+      threshold: DEBUG
+      currentLogFilename: logs/application.log
+      logFormat: "%d{yyyy-MM-dd HH:mm:ss.SSSZ, Europe/Warsaw} | %-5level | %X{correlationId} | %thread | %logger{1} | %m%n"
+      archive: false
+    - type: console
+      threshold: INFO
+      timeZone: UTC
+      target: stdout
+      logFormat: "%d{yyyy-MM-dd HH:mm:ss.SSSZ, Europe/Warsaw} | %-5level | %X{correlationId} | %thread | %logger{1} | %m%n"
