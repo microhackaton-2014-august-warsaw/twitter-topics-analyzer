@@ -93,7 +93,7 @@
     <orderEntry type="library" exported="" name="Gradle: jline-0.9.94" level="project" />
     <orderEntry type="library" exported="" name="Gradle: netty-3.7.0.Final" level="project" />
     <orderEntry type="library" exported="" name="Gradle: curator-client-2.6.0" level="project" />
-    <orderEntry type="library" name="Gradle: micro-deps-0.5.1" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-all-2.3.6-indy" level="project" />
   </component>
 </module>
 

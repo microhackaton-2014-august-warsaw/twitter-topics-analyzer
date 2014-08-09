@@ -15,7 +15,6 @@ buildscript {
     repositories {
         mavenCentral()
     }
-
     dependencies {
         classpath group: 'eu.appsatori', name: 'gradle-fatjar-plugin', version: '0.2'
     }
@@ -42,8 +41,27 @@ repositories {
 project.ext.dropwizardVersion  = '0.7.1'
 project.ext.cassandraDriverVersion = "2.0.3"
 project.ext.curatorVersion = '2.6.0'
+project.ext.groovyVersion = "2.3.6"
+
+configurations {
+    compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
+    compile.exclude group: "org.slf4j", module: "log4j-over-slf4j"
+}
+
+sourceSets {
+    main {
+        groovy {
+            // override the default locations, rather than adding additional ones
+            srcDirs = ['src/groovy', 'src/java']
+        }
+        java {
+            srcDirs = [] // don't compile Java code twice
+        }
+    }
+}
 
 dependencies {
+    compile "org.codehaus.groovy:groovy-all:$groovyVersion:indy"
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
     compile "org.apache.curator:curator-x-discovery:$curatorVersion"
     compile "org.apache.curator:curator-test:$curatorVersion"
