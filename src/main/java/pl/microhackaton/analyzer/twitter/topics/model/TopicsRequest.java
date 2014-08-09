@@ -1,5 +1,6 @@
 package pl.microhackaton.analyzer.twitter.topics.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TopicsRequest {
@@ -9,7 +10,11 @@ public class TopicsRequest {
 	private long pairId;
 	private String analyzerType = DATA_SOURCE;
 	private String analyzedId;
-	private List<Topic> topics;
+	private final List<Topic> topics;
+
+	public TopicsRequest() {
+		this.topics = new ArrayList<Topic>();
+	}
 
 	public long getPairId() {
 		return pairId;
@@ -39,7 +44,4 @@ public class TopicsRequest {
 		return topics;
 	}
 
-	public void setTopics(List<Topic> topics) {
-		this.topics = topics;
-	}
 }

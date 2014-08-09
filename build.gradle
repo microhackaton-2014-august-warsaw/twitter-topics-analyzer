@@ -64,6 +64,7 @@ dependencies {
     compile "org.codehaus.groovy:groovy-all:$groovyVersion:indy"
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
     compile "com.google.guava:guava:17.0"
+	compile "com.sun.jersey:jersey-client:1.8"
 //    compile "com.datastax.cassandra:cassandra-driver-core:$cassandraDriverVersion"
     compile "org.apache.curator:curator-x-discovery:$curatorVersion"
     compile "org.apache.curator:curator-test:$curatorVersion"
