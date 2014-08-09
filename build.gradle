@@ -42,10 +42,12 @@ project.ext.cassandraDriverVersion = "2.0.3"
 
 dependencies {
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
+    compile "com.google.guava:guava:17.0"
 //    compile "com.datastax.cassandra:cassandra-driver-core:$cassandraDriverVersion"
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile "org.assertj:assertj-core:1.6.1"
 }
 
 test {
