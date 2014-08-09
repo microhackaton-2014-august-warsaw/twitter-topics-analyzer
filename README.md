@@ -19,7 +19,7 @@ Out
             {
             "topic" :
             {
-                "name":"Warsaw"
+                "subject":"Warsaw"
             },
             "origin" : "twitter_hashtag"
             }
@@ -28,7 +28,7 @@ Out
             {
             "topic" :
             {
-                "name":"doe"
+                "subject":"doe"
             },
             "origin" : "twitter_user"
             }
