@@ -1,0 +1,12 @@
+language:  java
+branches:
+only:
+- master
+notifications:
+	email:
+		recipients:
+			- pmasko@gmail.com
+		on_success: change
+		on_failure: change
+jdk:
+- oraclejdk8
