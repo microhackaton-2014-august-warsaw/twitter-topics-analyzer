@@ -3,6 +3,7 @@ package pl.microhackaton.analyzer.twitter.topics;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import pl.microhackaton.analyzer.twitter.topics.healthcheck.PingCheck;
 import pl.microhackaton.analyzer.twitter.topics.resources.PairIdController;
 
 /**
@@ -22,6 +23,7 @@ public class TwitterTopicsAnalyzerApplication  extends Application<TwitterTopics
     @Override
     public void run(TwitterTopicsAnalyzerConfiguration configuration, Environment environment) throws Exception {
         environment.jersey().register(new PairIdController());
+        environment.healthChecks().register("ping", new PingCheck());
     }
 
     public static void main(String[] args) throws Exception {
