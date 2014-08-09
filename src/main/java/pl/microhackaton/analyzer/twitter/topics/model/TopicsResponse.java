@@ -1,4 +1,4 @@
-package pl.microhackaton.analyzer.twitter.topics.resources.model;
+package pl.microhackaton.analyzer.twitter.topics.model;
 
 import java.util.List;
 
