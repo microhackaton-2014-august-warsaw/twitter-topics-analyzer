@@ -3,35 +3,34 @@ twitter-topics-analyzer
 
 Team #2
 
-h2. API
+API
+-----------
 
 ```
 In 
-/api/{pairId}
+/api/{twitterLogin}/{pairId}
 Output from Twitter Collector
 
 Out
 {
     “pairId” : 1,
-    “places” :
+    “topics” :
     [
             {
-            "place" :
+            "topic" :
             {
-                "name":"Washington",
-                "country_code": "US"
+                "name":"Warsaw"
             },
-            "probability" : "high",
-            "origin" : "twitter_place"
-            },
+            "origin" : "twitter_hashtag"
+            }
+    ],
+    [
             {
-            "place" :
+            "topic" :
             {
-                "name":"Warsaw",
-                "country_code": "PL"
+                "name":"doe"
             },
-            "probability" : "high",
-            "origin" : "twitter_mention"
+            "origin" : "twitter_user"
             }
     ]
 }
