@@ -1,12 +1,12 @@
-language:  java
-branches:
-only:
-- master
-notifications:
-	email:
-		recipients:
-			- pmasko@gmail.com
-		on_success: change
-		on_failure: change
+language: groovy
 jdk:
 - oraclejdk8
+
+script:
+- ./gradlew build --info --stacktrace
+
+env:
+- TERM=dumb
+
+after_success:
+- ./gradlew build uploadArchives -PbuildNr=$TRAVIS_BUILD_NUMBER --info --stacktrace
