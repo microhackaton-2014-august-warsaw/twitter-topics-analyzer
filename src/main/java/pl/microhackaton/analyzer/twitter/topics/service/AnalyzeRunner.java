@@ -2,7 +2,6 @@ package pl.microhackaton.analyzer.twitter.topics.service;
 
 import javax.ws.rs.core.MediaType;
 
-import com.google.common.base.Optional;
 import pl.microhackaton.analyzer.twitter.topics.model.AnalyzeTweetsRequest;
 import pl.microhackaton.analyzer.twitter.topics.model.HashTag;
 import pl.microhackaton.analyzer.twitter.topics.model.Topic;
@@ -17,11 +16,9 @@ import com.sun.jersey.api.client.WebResource;
 public class AnalyzeRunner implements Runnable {
 
 	private final AnalyzeTweetsRequest analyzeTweetsRequest;
-    private final Optional<String> correlator;
 
-    public AnalyzeRunner(AnalyzeTweetsRequest analyzeTweetsRequest, Optional<String> correlator) {
+	public AnalyzeRunner(AnalyzeTweetsRequest analyzeTweetsRequest) {
 		this.analyzeTweetsRequest = analyzeTweetsRequest;
-        this.correlator = correlator;
 	}
 
 	@Override
@@ -49,12 +46,12 @@ public class AnalyzeRunner implements Runnable {
 
 	private TopicsResponse callCommonTopicsCorellator(TopicsRequest request) {
 		Client client = Client.create();
-        String urlCollector = correlator.or("http://localhost:8080/aaa/");
-        WebResource webResource = client.resource(urlCollector + request.getPairId());
+		WebResource webResource = client
+				.resource("http://0.0.0.0:8777/twitter-topics-analyzer/api/hello/"
+						+ request.getAnalyzedId()); // TODO
 
 		ClientResponse response = webResource
-				.accept(MediaType.APPLICATION_JSON).post(ClientResponse.class,
-						request);
+				.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
 		if (response.getStatus() != 200) {
 			throw new RuntimeException("Failed : HTTP error code : "
