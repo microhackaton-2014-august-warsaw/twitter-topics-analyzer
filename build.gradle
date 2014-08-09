@@ -52,7 +52,7 @@ sourceSets {
     main {
         groovy {
             // override the default locations, rather than adding additional ones
-            srcDirs = ['src/groovy', 'src/java']
+            srcDirs = ['src/main/groovy', 'src/main/java']
         }
         java {
             srcDirs = [] // don't compile Java code twice
