@@ -1,5 +1,6 @@
 package pl.microhackaton.analyzer.twitter.topics.resources;
 
+import com.codahale.metrics.annotation.ExceptionMetered;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 
@@ -14,6 +15,7 @@ public class PairIdController {
 
     @GET
     @Timed
+    @ExceptionMetered
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String sayHello(@PathParam("pairId") String pairId) {
