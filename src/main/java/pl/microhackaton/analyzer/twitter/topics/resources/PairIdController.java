@@ -1,7 +1,6 @@
 package pl.microhackaton.analyzer.twitter.topics.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.google.common.base.Optional;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
