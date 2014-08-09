@@ -3,6 +3,7 @@ package pl.microhackaton.analyzer.twitter.topics;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import pl.microhackaton.analyzer.twitter.topics.resources.PairIdController;
 
 /**
  * Created by pmasko on 09.08.2014.
@@ -20,7 +21,7 @@ public class TwitterTopicsAnalyzerApplication  extends Application<TwitterTopics
 
     @Override
     public void run(TwitterTopicsAnalyzerConfiguration configuration, Environment environment) throws Exception {
-
+        environment.jersey().register(new PairIdController());
     }
 
     public static void main(String[] args) throws Exception {
