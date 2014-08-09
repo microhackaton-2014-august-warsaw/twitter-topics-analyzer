@@ -3,8 +3,6 @@ package pl.microhackaton.analyzer.twitter.topics.resources;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import javax.ws.rs.Consumes;
@@ -15,12 +13,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.ofg.infrastructure.discovery.ServiceResolver;
 import pl.microhackaton.analyzer.twitter.topics.model.AnalyzeTweetsRequest;
 import pl.microhackaton.analyzer.twitter.topics.model.Tweet;
 import pl.microhackaton.analyzer.twitter.topics.service.AnalyzeRunner;
 
 import com.codahale.metrics.annotation.Timed;
+import com.google.common.base.Optional;
+import com.ofg.infrastructure.discovery.ServiceResolver;
 
 /**
  * Created by pmasko on 09.08.2014.
@@ -30,7 +29,8 @@ import com.codahale.metrics.annotation.Timed;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ApiController {
 
-    private final ServiceResolver serviceResolver;
+    private static final String CORRELATOR = "pl/pl/microhackaton/common-topics-correlator";
+	private final ServiceResolver serviceResolver;
 
     public ApiController(ServiceResolver serviceResolver) {
         this.serviceResolver = serviceResolver;
@@ -62,7 +62,8 @@ public class ApiController {
 		request.setTwitterLogin(twitterLogin);
 		request.setPairId(pairId);
 
-		AnalyzeRunner analyzer = new AnalyzeRunner(request, null);
+		Optional<String> correlator = serviceResolver.getUrl(CORRELATOR);
+		AnalyzeRunner analyzer = new AnalyzeRunner(request, correlator);
 		Executors.newCachedThreadPool().submit(analyzer);
 
 		return "{}";
