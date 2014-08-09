@@ -2,6 +2,7 @@
     "pl": {
         "this": "pl/microhackaton/twitter-topics-analyzer",
         "dependencies": {
+            "common-topics-correlator" : "pl/pl/microhackaton/common-topics-correlator"
         }
     }
 }

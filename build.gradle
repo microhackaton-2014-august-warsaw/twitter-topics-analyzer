@@ -18,6 +18,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'eu.appsatori', name: 'gradle-fatjar-plugin', version: '0.2'
+
     }
 }
 
@@ -73,12 +74,12 @@ uploadArchives {
     }
 }
 
-task deployToAws(dependsOn: uploadArchives) << {
-    String json = """{"artifactId": "${project.name}", "groupId": "$artifactGroupId","version": "$currentVersion",
-                     "jvmParams": "-Dspring.profiles.active=prod}"""
-    println "Sending the following json [$json]"
-    new groovyx.net.http.HTTPBuilder('http://54.73.40.79:18081/deploy').post([body: json, headers: ['Content-Type': 'application/json']])
-}
+//task deployToAws(dependsOn: uploadArchives) << {
+//    String json = """{"artifactId": "${project.name}", "groupId": "$artifactGroupId","version": "$currentVersion",
+//                     "jvmParams": "-Dspring.profiles.active=prod}"""
+//    println "Sending the following json [$json]"
+//    new groovyx.net.http.HTTPBuilder('http://54.73.40.79:18081/deploy').post([body: json, headers: ['Content-Type': 'application/json']])
+//}
 
 dependencies {
     compile "org.codehaus.groovy:groovy-all:$groovyVersion:indy"
@@ -87,7 +88,6 @@ dependencies {
 	compile "com.sun.jersey:jersey-client:1.8"
     compile "org.apache.curator:curator-x-discovery:$curatorVersion"
     compile "org.apache.curator:curator-test:$curatorVersion"
-
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile "org.assertj:assertj-core:1.6.1"
@@ -97,4 +97,3 @@ test {
     jvmArgs '-noverify'
 }
 
-applicationDefaultJvmArgs = [ "-noverify" ]

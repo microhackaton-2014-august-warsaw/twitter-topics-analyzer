@@ -27,9 +27,9 @@ public class TwitterTopicsAnalyzerApplication  extends Application<TwitterTopics
 
     @Override
     public void run(TwitterTopicsAnalyzerConfiguration configuration, Environment environment) throws Exception {
-        //final MicroDepsService microDepsService = configuration.getMicroDepServiceConfiguration().build(environment);
+        final MicroDepsService microDepsService = configuration.getMicroDepServiceConfiguration().build(environment);
 
-        environment.jersey().register(new ApiController());
+        environment.jersey().register(new ApiController(microDepsService.getServiceResolver()));
         // add correlation id filter
         environment.servlets().addFilter("CorrelationIdFilter", new CorrelationIdFilter())
                 .addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");

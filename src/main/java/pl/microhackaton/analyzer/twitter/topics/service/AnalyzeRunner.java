@@ -2,6 +2,7 @@ package pl.microhackaton.analyzer.twitter.topics.service;
 
 import javax.ws.rs.core.MediaType;
 
+import com.google.common.base.Optional;
 import pl.microhackaton.analyzer.twitter.topics.model.AnalyzeTweetsRequest;
 import pl.microhackaton.analyzer.twitter.topics.model.HashTag;
 import pl.microhackaton.analyzer.twitter.topics.model.Topic;
@@ -16,9 +17,11 @@ import com.sun.jersey.api.client.WebResource;
 public class AnalyzeRunner implements Runnable {
 
 	private final AnalyzeTweetsRequest analyzeTweetsRequest;
+    private final Optional<String> correlator;
 
-	public AnalyzeRunner(AnalyzeTweetsRequest analyzeTweetsRequest) {
+    public AnalyzeRunner(AnalyzeTweetsRequest analyzeTweetsRequest, Optional<String> correlator) {
 		this.analyzeTweetsRequest = analyzeTweetsRequest;
+        this.correlator = correlator;
 	}
 
 	@Override
@@ -46,8 +49,9 @@ public class AnalyzeRunner implements Runnable {
 
 	private TopicsResponse callCommonTopicsCorellator(TopicsRequest request) {
 		Client client = Client.create();
-		WebResource webResource = client
-				.resource("http://0.0.0.0:8777/twitter-topics-analyzer/api/hello/"
+        String urlCorr = this.correlator.or("http://0.0.0.0:8777/twitter-topics-analyzer/api/hello/");
+        WebResource webResource = client
+				.resource(urlCorr
 						+ request.getAnalyzedId()); // TODO
 
 		ClientResponse response = webResource

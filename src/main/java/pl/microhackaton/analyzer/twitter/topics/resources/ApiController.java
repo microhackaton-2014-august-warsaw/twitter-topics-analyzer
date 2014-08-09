@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.ofg.infrastructure.discovery.ServiceResolver;
 import pl.microhackaton.analyzer.twitter.topics.model.AnalyzeTweetsRequest;
 import pl.microhackaton.analyzer.twitter.topics.model.Tweet;
 import pl.microhackaton.analyzer.twitter.topics.service.AnalyzeRunner;
@@ -25,7 +26,13 @@ import com.codahale.metrics.annotation.Timed;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ApiController {
 
-	@GET
+    private final ServiceResolver serviceResolver;
+
+    public ApiController(ServiceResolver serviceResolver) {
+        this.serviceResolver = serviceResolver;
+    }
+
+    @GET
 	@Timed
 	@Path("/hello/{name}")
 	public String sayHello(@PathParam("name") String name) {
@@ -43,7 +50,8 @@ public class ApiController {
 		request.setTwitterLogin(twitterLogin);
 		request.setPairId(pairId);
 
-		AnalyzeRunner analyzer = new AnalyzeRunner(request);
+		AnalyzeRunner analyzer = new AnalyzeRunner(request, serviceResolver.getUrl("common-topics-correlator"));
+
 		Executors.newCachedThreadPool().execute(analyzer);
 	}
 
