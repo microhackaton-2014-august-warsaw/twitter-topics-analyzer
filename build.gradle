@@ -6,9 +6,10 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-version = '1.0'
-group = 'pl.microhackaton'
+project.ext.currentVersion = '1.0'
+project.ext.artifactGroupId =
+version = currentVersion
+group = "pl.microhackaton"
 description = 'Twitter topics analyzer'
 
 buildscript {
@@ -60,12 +61,23 @@ sourceSets {
     }
 }
 
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "http://nexus.microhackathon.pl/content/repositories/releases/") {
+            authentication(userName: 'deployment', password: 'deployment123')
+        }
+        pom.version = currentVersion
+        pom.artifactId = project.name
+        pom.groupId = artifactGroupId
+    }
+}
+
 dependencies {
     compile "org.codehaus.groovy:groovy-all:$groovyVersion:indy"
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
     compile "com.google.guava:guava:17.0"
 	compile "com.sun.jersey:jersey-client:1.8"
-//    compile "com.datastax.cassandra:cassandra-driver-core:$cassandraDriverVersion"
     compile "org.apache.curator:curator-x-discovery:$curatorVersion"
     compile "org.apache.curator:curator-test:$curatorVersion"
     compile "com.ofg:micro-deps:0.5.4-SNAPSHOT"
