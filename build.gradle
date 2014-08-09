@@ -73,6 +73,13 @@ uploadArchives {
     }
 }
 
+task deployToAws(dependsOn: uploadArchives) << {
+    String json = """{"artifactId": "${project.name}", "groupId": "$artifactGroupId","version": "$currentVersion",
+                     "jvmParams": "-Dspring.profiles.active=prod}"""
+    println "Sending the following json [$json]"
+    new groovyx.net.http.HTTPBuilder('http://54.73.40.79:18081/deploy').post([body: json, headers: ['Content-Type': 'application/json']])
+}
+
 dependencies {
     compile "org.codehaus.groovy:groovy-all:$groovyVersion:indy"
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
@@ -89,3 +96,5 @@ dependencies {
 test {
     jvmArgs '-noverify'
 }
+
+applicationDefaultJvmArgs = [ "-noverify" ]

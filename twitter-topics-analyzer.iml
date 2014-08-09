@@ -52,7 +52,6 @@
     <orderEntry type="library" exported="" name="Gradle: slf4j-api-1.7.6" level="project" />
     <orderEntry type="library" exported="" name="Gradle: jul-to-slf4j-1.7.6" level="project" />
     <orderEntry type="library" exported="" name="Gradle: logback-core-1.1.2" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: log4j-over-slf4j-1.7.6" level="project" />
     <orderEntry type="library" exported="" name="Gradle: jcl-over-slf4j-1.7.6" level="project" />
     <orderEntry type="library" exported="" name="Gradle: jetty-util-9.0.7.v20131107" level="project" />
     <orderEntry type="library" exported="" name="Gradle: jersey-core-1.18.1" level="project" />
@@ -94,6 +93,8 @@
     <orderEntry type="library" exported="" name="Gradle: netty-3.7.0.Final" level="project" />
     <orderEntry type="library" exported="" name="Gradle: curator-client-2.6.0" level="project" />
     <orderEntry type="library" name="Gradle: groovy-all-2.3.6-indy" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: jersey-client-1.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: assertj-core-1.6.1" level="project" />
   </component>
 </module>
 

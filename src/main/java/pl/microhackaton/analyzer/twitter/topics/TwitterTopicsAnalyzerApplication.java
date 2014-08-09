@@ -1,5 +1,6 @@
 package pl.microhackaton.analyzer.twitter.topics;
 
+import com.ofg.infrastructure.discovery.ServiceResolver;
 import com.ofg.infrastructure.discovery.util.MicroDepsService;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -28,8 +29,9 @@ public class TwitterTopicsAnalyzerApplication  extends Application<TwitterTopics
     @Override
     public void run(TwitterTopicsAnalyzerConfiguration configuration, Environment environment) throws Exception {
         final MicroDepsService microDepsService = configuration.getMicroDepServiceConfiguration().build(environment);
+        final ServiceResolver serviceResolver = microDepsService.getServiceResolver();
+        environment.jersey().register(new PairIdController(serviceResolver));
 
-        environment.jersey().register(new PairIdController());
         // add correlation id filter
         environment.servlets().addFilter("CorrelationIdFilter", new CorrelationIdFilter())
                 .addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
