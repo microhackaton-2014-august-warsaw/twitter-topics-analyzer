@@ -1,10 +1,14 @@
 package pl.microhackaton.analyzer.twitter.topics;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.ofg.infrastructure.discovery.ServiceResolver;
 import com.ofg.infrastructure.discovery.util.MicroDepsService;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.codehaus.jackson.annotate.JsonMethod;
 import pl.microhackaton.analyzer.twitter.topics.filter.CorrelationIdFilter;
 import pl.microhackaton.analyzer.twitter.topics.healthcheck.PingCheck;
 import pl.microhackaton.analyzer.twitter.topics.resources.PairIdController;
@@ -39,6 +43,8 @@ public class TwitterTopicsAnalyzerApplication  extends Application<TwitterTopics
 
         environment.healthChecks().register("ping", new PingCheck());
 
+        environment.getObjectMapper().setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        environment.getObjectMapper().configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
     }
 
     public static void main(String[] args) throws Exception {
