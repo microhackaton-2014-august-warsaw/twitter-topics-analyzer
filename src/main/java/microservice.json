@@ -1,0 +1,7 @@
+{
+    "pl": {
+        "this": "pl/microhackaton/twitter-topics-analyzer",
+        "dependencies": {
+        }
+    }
+}

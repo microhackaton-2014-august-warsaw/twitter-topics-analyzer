@@ -1,13 +1,14 @@
 server:
-    applicationConnectors:
-        - type: http
-          port: 8777
-    adminConnectors:
-        - type: http
-          port: 8779
+    type: simple
+    applicationContextPath: /twitter-topics-analyzer
+    adminContextPath: /twitter-topics-analyzer-admin
+    connector:
+        type: http
+        port: 8777
+
 
 microDepServiceConfiguration:
-    zookeeperUrl: tcp://zookeeper.microhackathon.pl:2181
+    zookeeperUrl: zookeeper.microhackathon.pl:2181
     microserviceContext: twitter-topics-analyzer
     microserviceUrl: localhost
     microservicePort: 8777
